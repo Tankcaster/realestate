@@ -95,7 +95,7 @@ class App extends Component {
         </div>
         <div className="map">
           <GoogleMap
-            bootstrapURLKeys={{ key: 'AIzaSyAX5OAHDNVgrj8mR_sCvk60RpCkhiQJECE' }}
+            bootstrapURLKeys={{ key: process.env.REACT_APP_MAP_KEY }}
             center={[36.127819, -93.682299]}
             zoom={12}>
           {locations.map(location =>
