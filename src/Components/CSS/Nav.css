@@ -1,0 +1,36 @@
+.navbar {
+  grid-column: 1 / 3;
+  background-image: url("mountains.jpg");
+  background-position: 50% 61%;
+  color: white;
+  height: 9 vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #777;
+}
+
+.navbar > nav {
+  display: flex;
+  line-height: 100%;
+  align-self: center;
+  justify-content: flex-end;
+}
+
+nav {
+  margin-right: 2rem;
+}
+
+nav > a {
+  margin: 1rem;
+  text-decoration: none;
+  color: white;
+}
+
+nav > a:hover {
+    text-decoration: underline;
+  }
+
+.navbar > h2 {
+  margin-left: 1rem;
+  font-family: 'PT Serif', serif;
+}
