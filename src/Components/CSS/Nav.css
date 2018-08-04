@@ -3,7 +3,7 @@
   background-image: url("mountains.jpg");
   background-position: 50% 61%;
   color: white;
-  height: 9 vh;
+  height: 10vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid #777;
@@ -30,7 +30,20 @@ nav > a:hover {
     text-decoration: underline;
   }
 
-.navbar > h2 {
+.navbar > a {
+  text-decoration: none;
+  color: white;
+  align-self: center;
+  font-size: 1.5rem;
   margin-left: 1rem;
   font-family: 'PT Serif', serif;
+}
+
+@media only screen and (max-width: 1000px) {
+    .map {
+      display: none;
+    }
+    .cards {
+      grid-column: 1 / span 2
+    }
 }

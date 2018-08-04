@@ -12,6 +12,9 @@ let locations = [
     lat: 36.127819,
     lng: -93.682299,
     image: 'house1.jpg',
+    beds: 2,
+    baths: 1,
+    sqft: 2500,
   },
   {
     id: 2,
@@ -21,6 +24,9 @@ let locations = [
     lat: 36.15543,
     lng: -93.62228,
     image: 'house2.jpg',
+    beds: 1,
+    baths: 1,
+    sqft: 800,
   },
   {
     id: 3,
@@ -31,6 +37,9 @@ let locations = [
     lat: 36.16543,
     lng: -93.58228,
     image: 'house3.jpg',
+    beds: 2,
+    baths: 2,
+    sqft: 700,
   },
   {
     id: 4,
@@ -41,6 +50,9 @@ let locations = [
     lat: 36.17543,
     lng: -93.62228,
     image: 'house4.jpg',
+    beds: 3,
+    baths: 2,
+    sqft: 1300,
   },
   {
     id: 5,
@@ -51,6 +63,9 @@ let locations = [
     lat: 36.19543,
     lng: -93.52228,
     image: 'house5.jpg',
+    beds: 0,
+    baths: 0,
+    sqft: 100,
   },
   {
     id: 6,
@@ -61,6 +76,9 @@ let locations = [
     lat: 36.20543,
     lng: -93.72228,
     image: 'house6.jpg',
+    beds: 4,
+    baths: 3,
+    sqft: 2000,
   }
 ]
 
@@ -74,6 +92,22 @@ class Map extends Component {
       maxPrice: 100000000000,
       sqft: 0,
       city: '',
+      beds: 0,
+      baths: 0,
+    }
+  }
+
+  componentDidMount = () => {
+    if(this.props.location.state) {
+      let searchTerms = this.props.location.state
+      this.setState({
+        minPrice: searchTerms.minPrice,
+        maxPrice: searchTerms.maxPrice,
+        sqft: searchTerms.sqft,
+        city: searchTerms.city,
+        beds: searchTerms.beds,
+        baths: searchTerms.baths,
+      })
     }
   }
 
@@ -91,9 +125,12 @@ class Map extends Component {
   }
 
   meetsSeachTerms = (location) => {
-    if(location && location.price > this.state.minPrice
-      && location.price < this.state.maxPrice
+    if(location && location.price >= this.state.minPrice
+      && location.price <= this.state.maxPrice
       && location.city.toLowerCase().includes(this.state.city.toLowerCase())
+      && (location.beds - this.state.beds == 0 || this.state.beds == 0)
+      && (location.baths - this.state.baths == 0 || this.state.baths == 0)
+      && location.sqft >= this.state.sqft
     ) {
       return true;
     }
@@ -110,12 +147,11 @@ class Map extends Component {
             <img src={location.image} />
             <div>
             <p>asking price: ${location.price.toLocaleString('en')}</p>
-            <p>acreage: {location.acres}</p>
+            <p>sq. feet: {location.sqft}</p>
             </div>
             <div>
-            <p>bedrooms: 2</p>
-            <p>bathrooms: 3</p>
-            <p>sq. feet: 500</p>
+            <p>bedrooms: {location.beds}</p>
+            <p>bathrooms: {location.baths}</p>
             </div>
             <button href="#">Learn More</button>
           </div>
@@ -156,7 +192,7 @@ class Map extends Component {
             <h4>Search</h4>
             <div>
               <label for="city">City</label>
-              <input name="city" type="text"
+              <input value={this.state.city} name="city" type="text"
                 onChange={(event) => {
                   this.setState({city: event.target.value})
                 }} />
@@ -176,12 +212,25 @@ class Map extends Component {
             </div>
             <div>
               <label for="sqft">Sq Ft</label>
-                <select>
+                <select value={this.state.sqft}
+                  onChange={(event) => {
+                    this.setState({sqft: event.target.value})
+                  }}>
                   <option value="100">100</option>
                   <option value="200">200</option>
                   <option value="300">300</option>
                   <option value="400">400</option>
                   <option value="500">500</option>
+                  <option value="600">600</option>
+                  <option value="700">700</option>
+                  <option value="800">800</option>
+                  <option value="900">900</option>
+                  <option value="1000">1000</option>
+                  <option value="1100">1100</option>
+                  <option value="1200">1200</option>
+                  <option value="1300">1300</option>
+                  <option value="1400">1400</option>
+                  <option value="1500">1500</option>
                 </select>
             </div>
             <div>
@@ -195,6 +244,32 @@ class Map extends Component {
                 <option value="30000">30,000</option>
                 <option value="40000">40,000</option>
                 <option value="50000">50,000</option>
+              </select>
+            </div>
+            <div>
+              <label for="beds">bedrooms</label>
+              <select value={this.state.beds}
+                onChange={(event) => {
+                  this.setState({beds: event.target.value})
+                }}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            <div>
+              <label for="minPrice">bathrooms</label>
+              <select value={this.state.baths}
+                onChange={(event) => {
+                  this.setState({baths: event.target.value})
+                }}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
               </select>
             </div>
           </div>
