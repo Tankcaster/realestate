@@ -1,86 +1,9 @@
-import React, {PropTypes, Component} from 'react';
+import React, { Component } from 'react';
 import GoogleMap from 'google-map-react';
 import ReactSVG from 'react-svg';
 import './CSS/Map.css';
 
-let locations = [
-  {
-    id: 1,
-    address: '12345 Somewhere blvd, Alabam AR 12345',
-    city: 'Alabam',
-    price: 30000,
-    lat: 36.127819,
-    lng: -93.682299,
-    image: 'house1.jpg',
-    beds: 2,
-    baths: 1,
-    sqft: 2500,
-  },
-  {
-    id: 2,
-    address: '54321 Place st, Marble AR 12345',
-    city: 'Marble',
-    price: 40000,
-    lat: 36.15543,
-    lng: -93.62228,
-    image: 'house2.jpg',
-    beds: 1,
-    baths: 1,
-    sqft: 800,
-  },
-  {
-    id: 3,
-    address: '69705 Street pl, Marble AR 12356',
-    city: 'Marble',
-    acres: 200,
-    price: 45000,
-    lat: 36.16543,
-    lng: -93.58228,
-    image: 'house3.jpg',
-    beds: 2,
-    baths: 2,
-    sqft: 700,
-  },
-  {
-    id: 4,
-    address: '18352 Parkway Blvd, Marble AR 12345',
-    city: 'Marble',
-    acres: 200,
-    price: 20000,
-    lat: 36.17543,
-    lng: -93.62228,
-    image: 'house4.jpg',
-    beds: 3,
-    baths: 2,
-    sqft: 1300,
-  },
-  {
-    id: 5,
-    address: '00000 Nowhere St, Void NA 00000',
-    city: 'Void',
-    acres: 200,
-    price: 10000,
-    lat: 36.19543,
-    lng: -93.52228,
-    image: 'house5.jpg',
-    beds: 0,
-    baths: 0,
-    sqft: 100,
-  },
-  {
-    id: 6,
-    address: '85632 Boulevard Dr, Forum AR 12445',
-    city: 'Forum',
-    acres: 200,
-    price: 70000,
-    lat: 36.20543,
-    lng: -93.72228,
-    image: 'house6.jpg',
-    beds: 4,
-    baths: 3,
-    sqft: 2000,
-  }
-]
+
 
 class Map extends Component {
 
@@ -94,10 +17,21 @@ class Map extends Component {
       city: '',
       beds: 0,
       baths: 0,
+      locations: [],
     }
   }
 
   componentDidMount = () => {
+    fetch('http://localhost:5000/api/houses', {
+      method: "GET",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(res => this.setState({locations: res.houses}))
+
     if(this.props.location.state) {
       let searchTerms = this.props.location.state
       this.setState({
@@ -144,9 +78,9 @@ class Map extends Component {
         return (
           <div  className="card" id={this.state.activeId == location.id ? 'active':null}>
             <h4>{location.address}</h4>
-            <img src={location.image} />
+            <img src={'/images/' + location.address + '/' + location.image} />
             <div>
-            <p>asking price: ${location.price.toLocaleString('en')}</p>
+            <p>asking price: ${parseInt(location.price).toLocaleString('en')}</p>
             <p>sq. feet: {location.sqft}</p>
             </div>
             <div>
@@ -182,7 +116,7 @@ class Map extends Component {
             bootstrapURLKeys={{ key: process.env.REACT_APP_MAP_KEY }}
             center={[36.127819, -93.682299]}
             zoom={12}>
-          {locations.map(location =>
+          {this.state.locations.map(location =>
             this.renderMapMarker(location)
           )}
           </GoogleMap>
@@ -192,7 +126,7 @@ class Map extends Component {
             <h4>Search</h4>
             <div>
               <label for="city">City</label>
-              <input value={this.state.city} name="city" type="text"
+              <input value={this.state.city} className="city" type="text"
                 onChange={(event) => {
                   this.setState({city: event.target.value})
                 }} />
@@ -273,7 +207,7 @@ class Map extends Component {
               </select>
             </div>
           </div>
-          {locations.map(location =>
+          {this.state.locations.map(location =>
             this.renderLocationCard(location)
           )}
         </div>

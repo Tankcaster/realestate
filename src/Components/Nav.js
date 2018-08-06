@@ -7,7 +7,7 @@ function Nav() {
     <div className="navbar">
       <Link to="/">Mountain Creek Real Estate Co</Link>
       <nav>
-        <a href="#">About</a>
+        <Link to="/map">Properties</Link>
         <a href="#">Contact</a>
         <a href="#">Etc</a>
       </nav>

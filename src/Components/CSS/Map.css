@@ -55,6 +55,10 @@
   margin-right: 1rem;
 }
 
+.city {
+  width: 6rem;
+}
+
 #active {
   background-color: rgb(245, 243, 196) !important;
 }
@@ -98,4 +102,13 @@
 .card > button:hover {
   background-color: rgb(116, 238, 132);
   border: 1px dotted rgb(68, 244, 91);
+}
+
+@media only screen and (max-width: 1000px) {
+    .map {
+      display: none;
+    }
+    .container {
+      grid-template-columns: 1fr;
+    }
 }

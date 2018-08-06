@@ -38,12 +38,3 @@ nav > a:hover {
   margin-left: 1rem;
   font-family: 'PT Serif', serif;
 }
-
-@media only screen and (max-width: 1000px) {
-    .map {
-      display: none;
-    }
-    .cards {
-      grid-column: 1 / span 2
-    }
-}
