@@ -9,7 +9,9 @@ class House extends Component {
     super();
     this.state = {
       house: {},
-      images: []
+      images: [],
+      years: 30,
+      interest: 4.5,
     };
   }
 
@@ -24,6 +26,15 @@ class House extends Component {
     })
   }
 
+  calculatePayment = () => {
+    let p = parseFloat(this.state.house.price);
+    let r = parseFloat(this.state.interest * .01 / 12);
+    let r2 = parseFloat(1+r);
+    let n = parseFloat(this.state.years * 12);
+    let output = Math.floor(p * ((r * Math.pow(r2, n))/(Math.pow(r2, n) - 1)));
+    return output;
+  }
+
   render(){
     let imageUrl = '/images/' + this.state.house.address + '/';
 
@@ -35,11 +46,18 @@ class House extends Component {
           </div>
           <div>
             <p>asking price: ${this.state.house.price/1000 + 'k'}</p>
-            <p>est. monthly payment: ${Math.floor(this.state.house.price/(30*12))}</p>
           </div>
           <div>
             <p>price per sqft: ${(this.state.house.price/this.state.house.sqft).toFixed(2)}</p>
-            <p>with 30 year mortgage</p>
+          </div>
+          <div className="monthly">
+            <p>est. monthly with <input type="text" onChange={(event) => this.setState({years: event.target.value})} value={this.state.years}/> year mortgage at <input type="text" value={this.state.interest} onChange={(event) => this.setState({interest: event.target.value})}/>
+              %
+            </p>
+            <div>
+              <h1>${this.calculatePayment()}</h1>
+              <p>/monthly</p>
+            </div>
           </div>
         </div>
         <div className="images houseCard">
@@ -96,18 +114,29 @@ class House extends Component {
             <i className="fas fa-ruler-combined" />
             <p className="detail"> sqft</p><p> {parseInt(this.state.house.sqft).toLocaleString('en')}</p>
           </div>
-          <div>
+          <div id="lastInterior">
             <i className="fas fa-calendar-alt" />
             <p className="detail"> built in </p><p>1960</p>
           </div>
         </div>
         <div className="contact houseCard">
           <div className="title">
-            <p><i className="fas fa-phone" /> Contact</p>
+            <p><i className="fas fa-phone" /> Contact us</p>
           </div>
-          <p>Like what you see? Get in touch! You can call us at 1-888-123-4567 or email us at bob@mountaincreek.com</p>
+          <div>
+            <input type="text" placeholder="Name"/>
+          </div>
+          <div>
+            <input type="text" placeholder="phone #"/>
+          </div>
+          <div>
+            <input type="text" placeholder="email"/>
+          </div>
+          <div>
+            <input type="text" placeholder="message"/>
+          </div>
+          <button>Contact our Agents</button>
         </div>
-
       </div>
     )
   }

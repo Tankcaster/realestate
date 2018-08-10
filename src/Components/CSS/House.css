@@ -2,7 +2,7 @@
   display: grid;
   background-color: white;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: auto auto 1fr 1fr 1fr 1fr 1fr;
 }
 
 .houseContainer > h2 {
@@ -10,16 +10,17 @@
     background-color: rgb(191, 191, 191);
 }
 
+.houseCard {
+  border: 1px solid black;
+}
+
 .images {
   grid-column: 5 / span 8;
-  grid-row: 1 / span 3;
+  grid-row: 1 / span 2;
   margin: 1rem;
   display: grid;
   grid-auto-rows: auto 1fr;
   grid-template-columns: 1fr;
-}
-
-.images > .title {
   border: 1px solid black;
 }
 
@@ -32,8 +33,38 @@
   display: grid;
   grid-column: 1 / span 4;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
   border: 1px solid black;
+}
+
+.pricing > div {
+  margin-bottom: 0;
+}
+
+.monthly {
+  grid-column: span 2;
+}
+
+.monthly > p > input {
+  width: 1.5rem;
+  border: none;
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+.monthly > p > input:focus{
+    outline: none;
+}
+
+.monthly > div > h1 {
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.monthly > div > p {
+  text-align: center;
+  margin-top: 0;
 }
 
 .pricing > div {
@@ -42,10 +73,9 @@
 
 .title {
   grid-column: 1 / span 2;
-  border-bottom: 1px solid black;
   font-size: 20px;
   padding-left: 1rem;
-  background-color: rgb(108, 194, 68);
+  background: linear-gradient(rgb(108, 194, 68), rgb(154, 221, 124));
   align-content: center;
 }
 
@@ -57,6 +87,7 @@
   grid-template-rows: auto auto 1fr;
   grid-template-columns: 1fr 1fr;
   border: 1px solid black;
+  border-bottom: 2px solid black;
 }
 
 .cardMap {
@@ -70,7 +101,7 @@
 }
 
 .interior {
-  grid-column: 1 / span 6;
+  grid-column: span 8;
   margin: 1rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -103,27 +134,47 @@
   text-align: left;
 }
 
+#lastInterior {
+  border: none;
+}
+
 .contact {
-  grid-column: 7 / span 6;
-  margin: 1rem;
+  grid-column: span 12;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto 1fr;
-  border: 1px solid black;
+  grid-template-rows: auto 1fr 1fr;
+  margin: 1rem;
+}
+
+.contact > div {
+  padding-left: 1rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.contact > div > input {
+  border: none;
+  border-bottom: 1px solid black;
+  width: auto;
+}
+
+.contact > button {
+  grid-column: 2 / span 2;
+  margin: 1rem;
+  background: linear-gradient(rgb(108, 194, 68), rgb(154, 221, 124));
+  color: white;
+  font-size: 1.5rem;
 }
 
 .contact > .title {
   grid-column: span 4;
 }
 
-.contact > p {
-  grid-column: span 3;
-  padding-left: 1rem;
-}
 
 @media only screen and (max-width: 1000px) {
     .houseContainer{
       grid-template-columns: 1fr;
+      grid-template-rows: 1fr auto repeat(3, 1fr);
       width: 100vw;
     }
     .houseCard {
@@ -133,4 +184,19 @@
     .interior {
       font-size: 1.5rem;
     }
+    .contact > div > input {
+      width: 38vw;
+    }
+    .images {
+      grid-row: span 1;
+    }
+}
+
+@media only screen and (max-width: 1600px) {
+  .contact {
+    grid-template-rows: auto 1fr 1fr 1fr;
+  }
+  .contact > div {
+    grid-column: span 2;
+  }
 }
