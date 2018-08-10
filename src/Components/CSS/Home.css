@@ -30,6 +30,11 @@
   margin-bottom: 1rem;
 }
 
+html {
+  background-image: url(mountains.jpg);
+  background-size: cover;
+}
+
 img {
   grid-column: 2 / span 10;
   width: 100%;

@@ -5,6 +5,7 @@ import Nav from './Components/Nav';
 import Map from './Components/Map';
 import Home from './Components/Home';
 import HouseForm from './Components/HouseForm';
+import House from './Components/House';
 import './Components/CSS/App.css';
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route path="/map" component={Map} />
             <Route path="/houseform" component={HouseForm} />
+            <Route path="/houses/:id" component={House} />
           </div>
         </Router>
       </div>

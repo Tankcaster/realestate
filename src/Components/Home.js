@@ -25,7 +25,6 @@ class Home extends Component {
   render() {
     return(
       <div className="home">
-        <img src="mountains.jpg" />
         <div className="searchBar">
           <h4>Search</h4>
           <div>
