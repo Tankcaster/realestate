@@ -125,15 +125,11 @@ class Map extends Component {
       <div className="container">
         <div className="search">
           <div>
-            <label for="city">City</label>
+            <label for="city"><i className="fas fa-search" /></label>
             <input value={this.state.city} className="city" type="text"
               onChange={(event) => {
                 this.setState({city: event.target.value})
               }} />
-          </div>
-          <div>
-            <label><i className="fas fa-tag" /></label>
-            <DDmenu />
           </div>
           <div>
             <label><i className="fas fa-ruler-combined"/></label>
@@ -143,6 +139,32 @@ class Map extends Component {
                 }}>
                 {this.makeOptionList(100, 4000, 100, '', ' sqft')}
               </select>
+          </div>
+          <div className="priceSelector">
+            <label><i className="fas fa-tag" /></label>
+            <select>
+              <option>$0 - $50,000</option>
+              <option>$50,000 - $100,000</option>
+              <option>$100,000 - $150,000</option>
+              <option>$150,000 - $200,000</option>
+              <option>$200,000 - $250,000</option>
+              <option>$250,000 - $300,000</option>
+              <option>$300,000 - $350,000</option>
+              <option>$350,000 - $400,000</option>
+              <option>$400,000 - $450,000</option>
+              <option>$450,000 - $500,000</option>
+              <option>$500,000 - $550,000</option>
+              <option>$550,000 - $600,000</option>
+              <option>$600,000 - $650,000</option>
+              <option>$650,000 - $700,000</option>
+              <option>$700,000 - $750,000</option>
+              <option>$750,000 - $800,000</option>
+              <option>$800,000 - $850,000</option>
+              <option>$850,000 - $900,000</option>
+              <option>$900,000 - $950,000</option>
+              <option>$850,000 - $1,000,000</option>
+              <option>$1,000,000 +</option>
+            </select>
           </div>
           <div>
             <label for="beds"><i className="fas fa-bed"/></label>

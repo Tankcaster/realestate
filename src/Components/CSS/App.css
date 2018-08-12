@@ -1,4 +1,11 @@
 body {
+  height: 100%;
   margin: 0;
+  display: grid;
+  grid-template-rows: auto auto;
   font-family: 'Open Sans', sans-serif;
+}
+
+#root {
+  height: 100%;
 }
