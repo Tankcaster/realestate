@@ -2,7 +2,7 @@
   background-image: url("mountains.jpg");
   background-position: 50% 90%;
   display: grid;
-  grid-template-rows: 2fr, 2fr;
+  grid-template-rows: auto, auto;
 }
 
 .searchBar {
@@ -68,5 +68,30 @@
 }
 
 .featuredTitle {
-  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+@media only screen and (min-width: 1000px) {
+  .jumboTitle {
+    height: 30vh;
+    padding-top: 30vh;
+  }
+
+  .searchBar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 8rem;
+  }
+  .searchButton {
+    grid-column: 2 / span 3;
+  }
+
+  .featured {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .featuredTitle {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid #86D2B6;
+  }
 }

@@ -2,7 +2,7 @@
   display: grid;
   background-color: white;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto auto 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto auto 1fr 1fr;
 }
 
 .houseContainer > h2 {
@@ -33,7 +33,7 @@
   display: grid;
   grid-column: 1 / span 4;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto auto;
   border: 1px solid black;
 }
 
@@ -54,6 +54,20 @@
 
 .monthly > p > input:focus{
     outline: none;
+}
+
+.highlightedPrice {
+  text-align: center;
+  padding-left: 0 !important;
+
+}
+
+.highlightedPrice >  h1 {
+  margin-bottom: 0;
+}
+
+.highlightedPrice >  p {
+  margin-top: 0;
 }
 
 .monthly > div > h1 {

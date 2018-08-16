@@ -39,11 +39,11 @@
 
 .search {
   padding-left: 1rem;
+  border-top: 1px solid black;
   grid-column: 1 / span 2;
-  background: linear-gradient(rgb(108, 194, 68), rgb(154, 221, 124));
+  background: linear-gradient(rgb(154, 221, 124), rgb(108, 194, 68));
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  border-radius: 5px;
 }
 
 .search > h4 {

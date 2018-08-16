@@ -27,7 +27,7 @@ class House extends Component {
   }
 
   calculatePayment = () => {
-    let p = parseFloat(this.state.house.price);
+    let p = parseFloat(this.state.house.price) * .8;
     let r = parseFloat(this.state.interest * .01 / 12);
     let r2 = parseFloat(1+r);
     let n = parseFloat(this.state.years * 12);
@@ -54,12 +54,17 @@ class House extends Component {
             <p>est. monthly with <input type="text" onChange={(event) => this.setState({years: event.target.value})} value={this.state.years}/> year mortgage at <input type="text" value={this.state.interest} onChange={(event) => this.setState({interest: event.target.value})}/>
               %
             </p>
-            <div>
-              <h1>${this.calculatePayment()}</h1>
-              <p>/monthly</p>
-            </div>
+          </div>
+          <div className="highlightedPrice">
+            <h1>${this.calculatePayment()}</h1>
+            <p>/monthly</p>
+          </div>
+          <div className="highlightedPrice">
+            <h1>${this.state.house.price * .2 / 1000}k</h1>
+            <p>down</p>
           </div>
         </div>
+
         <div className="images houseCard">
           <div className="title">
             <p><i className="fas fa-camera" /> Pictures</p>
