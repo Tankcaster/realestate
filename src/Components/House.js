@@ -62,7 +62,7 @@ class House extends Component {
         </div>
         <div className="images houseCard">
           <div className="title">
-            <p><i className="fas fa-images" /> Pictures</p>
+            <p><i className="fas fa-camera" /> Pictures</p>
           </div>
           <div className="carousel">
             <Carousel autoPlay
@@ -136,6 +136,23 @@ class House extends Component {
             <input type="text" placeholder="message"/>
           </div>
           <button>Contact our Agents</button>
+        </div>
+        <div className="land houseCard">
+          <div className="title">
+            <p><i className="fas fa-image" /> Land details</p>
+          </div>
+          <div>
+            <p>acres: 2</p>
+          </div>
+          <div>
+            <p>trees: partial coverage</p>
+          </div>
+          <div>
+            <p>Land type: Home</p>
+          </div>
+          <div>
+            <p>fencing: partial</p>
+          </div>
         </div>
       </div>
     )
