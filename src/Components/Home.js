@@ -35,7 +35,8 @@ class Home extends Component {
       <div className="home">
         <div className="jumbotron">
             <div className="jumboTitle">
-              <h2>Serving Huntsville and Northern Arkansas</h2>
+              <h2>Mountain Creek Real Estate Co.</h2>
+              <p>Serving Huntsville and Northern Arkansas</p>
             </div>
             <div className="searchBar">
               <div>
