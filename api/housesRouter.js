@@ -33,6 +33,19 @@ const upload = multer({storage: storage});
 
 const housesRouter = express.Router();
 
+housesRouter.param('houseId', (req, res, next, id) => {
+  db.get(`SELECT * FROM Houses WHERE id=${id}`, (err, row) => {
+    if(err) next(err);
+    if(row) {
+      req.house = row;
+      next();
+    }
+    else {
+      res.status(404).send();
+    }
+  })
+})
+
 housesRouter.get('/', (req, res, next) => {
   db.all(`SELECT * FROM Houses`, (err, rows) => {
     if(err) {
@@ -44,22 +57,12 @@ housesRouter.get('/', (req, res, next) => {
 });
 
 housesRouter.get('/:houseId', (req, res, next) => {
-  db.get(`SELECT * FROM Houses WHERE id=${req.params.houseId}`, (err, row) => {
-    if(err) {
-      console.log(err);
-      return res.status(500).send();
-    }
-
-    fs.readdir(__dirname + '/../public/images/' + row.address, (err, files) => {
-      if(err) {
-        console.log(err);
-        return res.status(500).send();
-      }
-      res.json({
-        house: row,
-        images: files
-      });
-    })
+  fs.readdir(__dirname + '/../public/images/' + req.house.address, (err, files) => {
+    if(err) next(err);
+    res.json({
+      house: req.house,
+      images: files
+    });
   })
 })
 

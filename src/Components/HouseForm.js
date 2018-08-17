@@ -10,7 +10,13 @@ class HouseForm extends React.Component {
       image: null,
       beds: null,
       baths: null,
-      sqft: null
+      sqft: null,
+      type: 0,
+      acreage: null,
+      treeCover: '',
+      fencing: '',
+      animals: '',
+      description: '',
     };
   }
 
@@ -38,50 +44,147 @@ class HouseForm extends React.Component {
     .then(console.log('welp'))
   }
 
+  renderHouseForm = () => {
+    return (
+      <div>
+        <div>
+          <input
+            type='text'
+            value={this.state.price}
+            onChange={(event) => this.setState({price: event.target.value})}
+            placeholder='price'
+          />
+        </div>
+        <div>
+          <input
+            type='text'
+            value={this.state.beds}
+            onChange={(event) => this.setState({beds: event.target.value})}
+            placeholder='beds'
+          />
+        </div>
+        <div>
+          <input
+            type='text'
+            value={this.state.baths}
+            onChange={(event) => this.setState({baths: event.target.value})}
+            placeholder='baths'
+          />
+        </div>
+        <div>
+          <input
+            type='text'
+            value={this.state.sqft}
+            onChange={(event) => this.setState({sqft: event.target.value})}
+            placeholder='sqft'
+          />
+        </div>
+      </div>
+    )
+  }
+
+  renderLandForm = () => {
+    return (
+      <div>
+        <div>
+          <div>
+            <input
+              type="text"
+              value={this.state.acreage}
+              onChange={(event) => this.setState({acreage: this.state.event})}
+              placeholder="acreage"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              value={this.state.treeCover}
+              onChange={(event) => this.setState({treeCover: this.state.event})}
+              placeholder="tree coverage"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              value={this.state.fencing}
+              onChange={(event) => this.setState({fencing: this.state.event})}
+              placeholder="fencing coverage"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              value={this.state.animals}
+              onChange={(event) => this.setState({animals: this.state.event})}
+              placeholder="livestock allowed"
+            />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  renderRelevantForm = () => {
+    let output = [];
+    if(this.state.type == 0) {
+      output.push(this.renderHouseForm());
+    }
+    else if(this.state.type == 1) {
+      output.push(this.renderLandForm());
+    }
+    else if(this.state.type == 2) {
+      output.push(this.renderHouseForm());
+      output.push(this.renderLandForm());
+    }
+    return output;
+  }
+
   render() {
     return(
-      <div>
-        <input
-          type='text'
-          value={this.state.address}
-          onChange={(event) => this.setState({address: event.target.value})}
-          placeholder='address'
-        />
-        <input
-          type='text'
-          value={this.state.city}
-          onChange={(event) => this.setState({city: event.target.value})}
-          placeholder='city'
-        />
-        <input
-          type='text'
-          value={this.state.price}
-          onChange={(event) => this.setState({price: event.target.value})}
-          placeholder='price'
-        />
-        <input
-          type='text'
-          value={this.state.beds}
-          onChange={(event) => this.setState({beds: event.target.value})}
-          placeholder='beds'
-        />
-        <input
-          type='text'
-          value={this.state.baths}
-          onChange={(event) => this.setState({baths: event.target.value})}
-          placeholder='baths'
-        />
-        <input
-          type='text'
-          value={this.state.sqft}
-          onChange={(event) => this.setState({sqft: event.target.value})}
-          placeholder='sqft'
-        />
-        <input
-          type='file'
-          multiple="true"
-          onChange={(event) => this.setState({image: event.target.files})}
-        />
+      <div style={{marginLeft: '1rem'}}>
+        <div>
+          <label>Property Type </label>
+          <select onChange={(event) => this.setState({type: event.target.value}, console.log(this.state.type))}>
+            <option value={0}>House</option>
+            <option value={1}>Land</option>
+            <option value={2}>House + Land</option>
+          </select>
+        </div>
+        <div>
+          <input
+            type='text'
+            value={this.state.address}
+            onChange={(event) => this.setState({address: event.target.value})}
+            placeholder='address'
+          />
+        </div>
+        {this.renderRelevantForm()}
+        <div>
+          <input
+            type='text'
+            value={this.state.city}
+            onChange={(event) => this.setState({city: event.target.value})}
+            placeholder='city'
+          />
+        </div>
+        <div>
+          <textarea
+            value={this.state.description}
+            onChange={(event) => this.setState({description: event.target.value})}
+            placeholder="description"
+          />
+        </div>
+        <div>
+          <input
+            type='file'
+            multiple="true"
+            onChange={(event) => this.setState({image: event.target.files})}
+          />
+        </div>
+        <div>
+          <label>Feature this property?</label>
+          <input type="checkbox" />
+        </div>
       <button onClick={() => this.handleSubmit()}>Submit</button>
       </div>
     )

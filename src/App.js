@@ -6,6 +6,7 @@ import Map from './Components/Map';
 import Home from './Components/Home';
 import HouseForm from './Components/HouseForm';
 import House from './Components/House';
+import page404 from './Components/404.js';
 import './Components/CSS/App.css';
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/map" component={Map} />
             <Route path="/houseform" component={HouseForm} />
             <Route path="/houses/:id" component={House} />
+            <Route path="/404" component={page404} />
           </div>
         </Router>
       </div>

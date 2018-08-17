@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
+const errorhandler = require('errorhandler');
 
 const apiRouter = require('./api/apiRouter');
 
@@ -27,6 +28,8 @@ app.use(express.static(path.resolve(__dirname, 'public')));
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
+
+app.use(errorhandler());
 
 app.listen(port, ()=> {
   console.log(`Server listening on port ${port}`);

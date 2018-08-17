@@ -63,12 +63,13 @@
   height: 2rem;
   border-radius: 8px;
   background-color: #86D2B6;
-  border: 1px solid #8C835D;
+  border: 1px solid black;
   color: white;
 }
 
 .featuredTitle {
   padding-left: 1rem;
+  border-bottom: 1px solid #86D2B6;
 }
 
 @media only screen and (min-width: 1000px) {
@@ -92,6 +93,5 @@
   }
   .featuredTitle {
     grid-column: 1 / -1;
-    border-bottom: 1px solid #86D2B6;
   }
 }

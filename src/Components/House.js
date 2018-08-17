@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import GoogleMap from 'google-map-react';
 import ReactSVG from 'react-svg';
@@ -17,6 +18,12 @@ class House extends Component {
 
   componentDidMount = () => {
     fetch('http://localhost:5000/api/' + this.props.location.pathname)
+    .then(res => {
+      if(res.status == 404){
+        window.location = '/404';
+      }
+      return res;
+    })
     .then(res => res.json())
     .then(res => {
       this.setState({

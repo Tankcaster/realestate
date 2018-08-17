@@ -110,6 +110,25 @@ class Map extends Component {
     }
   }
 
+  renderCards = () => {
+    let empty = 0;
+    let output = []
+    output = this.state.locations.map(location =>
+      this.renderLocationCard(location)
+    )
+    for(let i = 0; i < output.length; i++) {
+      if(output[i] == null) {
+        empty++;
+      }
+    }
+
+    if(empty == output.length){
+      output = (<div><p>nothing matches those search terms</p></div>)
+    }
+
+    return output;
+  }
+
   makeOptionList = (min, max, changeAmount, prefix, suffix,) => {
     let output = [];
     for(let i = min; i <= max; i += changeAmount) {
@@ -204,9 +223,7 @@ class Map extends Component {
           </GoogleMap>
         </div>
         <div className="cards">
-          {this.state.locations.map(location =>
-            this.renderLocationCard(location)
-          )}
+          {this.renderCards()}
         </div>
       </div>
     )
